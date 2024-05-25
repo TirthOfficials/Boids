@@ -2,6 +2,8 @@
 
 ### Teammates: Tirth Patel, Ariel Zolton, Anthony Contreras Linarez
 
+## Main Python File: boidsgame.py
+
 This project is a simple boid simulation created using Pygame. Boids are agents that simulate the flocking behavior seen in birds. The simulation includes rules for separation, alignment, and cohesion to control the movement of the boids. Additionally, obstacles can be added to the environment, affecting the boids' paths.
 Features
 
