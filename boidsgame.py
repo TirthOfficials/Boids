@@ -10,7 +10,7 @@ pygame.init()
 WIDTH, HEIGHT = 800, 600
 BACKGROUND_COLOR = (10, 10, 40)
 OBSTACLE_COLOR = (200, 50, 50)
-TEXT_COLOR = (255, 255, 255)
+TEXT_COLOR = (0, 0, 0)  # Black color for text
 NEIGHBOR_RADIUS = 45
 SEPARATION_RADIUS = 30
 ALIGNMENT_RADIUS = 50
@@ -20,17 +20,20 @@ FONT_COLOR = (255, 255, 255)
 CENTER = (WIDTH // 2, HEIGHT // 2)
 RADIUS = 250  # Radius of the circle in which the boids are confined
 MAX_SPEED = 4  # Initial maximum speed of boids
+CIRCLE_COLOR = (0, 0, 139)  # Dark blue color for circle
+CIRCLE_BORDER_WIDTH = 5  # Thickness of the circle border
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 clock = pygame.time.Clock()
 font = pygame.font.Font(None, 36)
 small_font = pygame.font.Font(None, 24)
+bold_font = pygame.font.Font(None, 24)  # Bold font for text
 boids = []
 obstacles = []
 
-background_image = pygame.image.load(r'Main_menu.jpg')
+background_image = pygame.image.load(r'bg.jpeg')
 background_image = pygame.transform.scale(background_image, (WIDTH, HEIGHT))
-boid_image = pygame.image.load(r'p.png')
+boid_image = pygame.image.load(r'bird.png')
 boid_image = pygame.transform.scale(boid_image, (BOID_SIZE, BOID_SIZE))
 
 def draw_text(text, position, font, color=TEXT_COLOR, center=True):
@@ -153,7 +156,7 @@ while running:
                 MAX_SPEED = 1 + speed_factor * 9
 
     draw_background()
-    pygame.draw.circle(screen, TEXT_COLOR, CENTER, RADIUS, 1)  # Draw boundary
+    pygame.draw.circle(screen, CIRCLE_COLOR, CENTER, RADIUS, CIRCLE_BORDER_WIDTH)  # Draw boundary
 
     for obstacle in obstacles:
         pygame.draw.circle(screen, OBSTACLE_COLOR, (int(obstacle.x), int(obstacle.y)), 10)
@@ -163,14 +166,14 @@ while running:
         boid.draw(screen)
 
     # Display instructions and stats
-    draw_text("Press 'B' to add new boid", (10, 60), small_font, TEXT_COLOR, center=False)
-    draw_text("Press 'H' or click to add obstacle", (10, 80), small_font, TEXT_COLOR, center=False)
-    draw_text("Press 'Q' to end the Game", (10, 110), small_font, TEXT_COLOR, center=False)
-    draw_text(f"Total Boids: {len(boids)}", (10, 140), small_font, TEXT_COLOR, center=False)
-    draw_text(f"Total Obstacles: {len(obstacles)}", (10, 170), small_font, TEXT_COLOR, center=False)
+    draw_text("Press 'B' to add new boid", (10, 60), bold_font, TEXT_COLOR, center=False)
+    draw_text("Press 'H'/ click to add obstacle", (10, 90), bold_font, TEXT_COLOR, center=False)
+    draw_text("Press 'Q' to end the Game", (10, 120), bold_font, TEXT_COLOR, center=False)
+    draw_text(f"Total Boids: {len(boids)}", (10, 150), bold_font, TEXT_COLOR, center=False)
+    draw_text(f"Total Obstacles: {len(obstacles)}", (10, 180), bold_font, TEXT_COLOR, center=False)
 
     # Draw speed slider
-    draw_text("Speed", (50, 10), small_font, TEXT_COLOR, center=False)
+    draw_text("Speed", (10, 0), bold_font, TEXT_COLOR, center=False)
     draw_slider(speed_factor)
 
     pygame.display.flip()
