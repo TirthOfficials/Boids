@@ -35,6 +35,8 @@ background_image = pygame.image.load(r'bg.jpeg')
 background_image = pygame.transform.scale(background_image, (WIDTH, HEIGHT))
 boid_image = pygame.image.load(r'bird.png')
 boid_image = pygame.transform.scale(boid_image, (BOID_SIZE, BOID_SIZE))
+pygame.mixer.music.load('music.mp3')
+pygame.mixer.music.play(-1)  # Play the music in a loop
 
 def draw_text(text, position, font, color=TEXT_COLOR, center=True):
     text_surface = font.render(text, True, color)
